@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<!--
+=====================================================================
+INTEGRATED AICC EXAMPLE
+=====================================================================
+This document contains the bare minimum code required to get the AICC
+library to function. It is expected that you are familiar enough with
+JavaScript to add any additional JS files/code necessary to handle
+other functions, varaibles, or deviations from the norm in your
+particular course.
+
+In this example, the course starts immediately upon launch (e.g. the
+timer starts running), but with a little code modification, you can
+delay the start of the timer (firing the aicc.startTime() function)
+until after a button press or other JavaScript event happens.
+=====================================================================
+-->
+<head>
+  <title>AICC Library Sample</title>
+  <meta charset="utf-8" />
+
+  <!-- "course.js" sets course-specific variables -->
+  <script src="scripts/course.js" defer></script>
+
+  <!-- "aicc.js" is the core script-->
+  <script src="scripts/aicc.js" defer></script>
+
+</head>
+
+<body>
+
+  <h1>Course Content</h1>
+
+  <p>Although this course is only one page, you'll need to find a way,
+    either by using
+    <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage">
+      localstorage</a>, SQL storage, or some other means.</p>
+
+  <input type="button" value="Request Credit" id="credit-request" onclick="reqCredit();">
+
+<!-- it's expected that you'll use CSS or some other method to hide this
+     form from the end-user, as there's no need for them to see it
+
+     the <input> fields are of type "hidden", so they shouldn't show up,
+     but it's best to use CSS to hide the entire form or wrap it in an
+     enclosing element that's hidden just to be safe. -->
+
+    <form class="aicc-form" method="post" target="responseFrame" action="">
+      <input type="hidden" id="command" name="command" value="">
+      <input type="hidden" id="version" name="version" value="">
+      <input type="hidden" id="session_id" name="session_id" value="">
+      <input type="hidden" id="aicc_data" name="aicc_data" value="">
+    </form>
+
+    <!-- this iframe is critical, or submission of credit will cause the
+         LMS to spawn another window with result data that is irrelevant to
+         the end user. However, this can be useful during development, if
+         you are making changes to the code, so temporarily removing it
+         could be useful for that purpose.
+
+         You'll also need to hide this via CSS. The easiest way is to wrap
+         both it and the form in a DIV or other element, and hide that one
+         via CSS. -->
+
+    <iframe name="responseFrame"><iframe>
+
+</body>
+
+</html>
